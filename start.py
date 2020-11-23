@@ -133,6 +133,7 @@ def symbol(param):
 
 # ok: banner3-D , contessa , contrast , cosmic , drpepper
 # ascii_banner = pyfiglet.figlet_format("VULN PORT SCANNER", font="drpepper")
+
 ascii_banner = """
 """+color("b_merah")+""" _ _  _ _  _    _ _  """+color("b_cyan")+"""  ___  ___  ___  ___  """+color("b_hijau")+"""  ___  ___  ___  _ _  _ _  ___  ___
 """+color("b_merah")+"""| | || | || |  | \ | """+color("b_cyan")+""" | . \| . || . \|_ _| """+color("b_hijau")+""" / __>|  _>| . || \ || \ || __>| . \\
@@ -204,11 +205,7 @@ def banner():
     print(color("b_biru")+ "Version: "  + now_version + (" " * (row_pembatas-28)) +color("b_kuning")+ "by " +color("b_hijau")+ "P34C3_KHYREIN")
     pembatas()
 
-# check update sources
-if info["version"] != now_version:
-    banner()
-    print("please update new sources!")
-    print("now version: " +color("b_hijau")+ info["version"])
+def whats_new():
     print(symbol("timbangan") +color("b_ungu")+ "  what's new? : \n")
     info_wn = info['whats_new']
     # info_wn.sort(key=lambda x: x.count, reverse=True)
@@ -219,6 +216,14 @@ if info["version"] != now_version:
             update += "      " + symbol(a["icon"]) +color("b_ungu")+  " : " +color("hijau")+  a["info"] + "\n"
         ok_print = "   "+ symbol("check_green_box") +color("b_biru")+ " [" +color("b_hijau")+ p['version'] +color("b_biru")+ "] " +C+ update
         print( ok_print )
+
+# check update sources
+if info["version"] != now_version:
+    banner()
+    print("please update new sources!")
+    print("now version: " +color("b_hijau")+ info["version"])
+    
+    whats_new()
     
     ready = input(color("b_cyan")+ "Ready to Update? (Y/y ~ N/n/*): " +color("b_hijau"))
     if ready == "Y" or ready == "y":
@@ -234,9 +239,9 @@ if info["version"] != now_version:
     sys.exit()
 
 def help_information():
-    banner()
-    print("Example: python3 start.py -t 8.8.8.8")
+    print(color("hijau")+ "Example: python3 start.py -t 8.8.8.8")
     print("         python3 start.py -t www.google.com")
+    pembatas()
 ########################################################################
 #                         Initial Definition
 
@@ -244,16 +249,19 @@ def help_information():
 full_cmd_arguments = sys.argv
 # Keep all but the first
 argument_list = full_cmd_arguments[1:]
-short_options = "ht:"
-long_options = ["help", "target="]
+short_options = "ht:w"
+long_options = ["help", "target=" , "whatsnew"]
 try:
     arguments, values = getopt.getopt(argument_list, short_options, long_options)
 except getopt.error as err:
+    banner()
     # Output error, and return with an error code
-    print (str(err))
-    print("Help: python3 start.py -h")
+    print(color("b_merah")+ "\n" + str(err) + "\n")
+    help_information()
     sys.exit(2)
 if len(arguments) == 0:
+    banner()
+    print(color("b_merah")+ "\nArguments Wrong!\n")
     help_information()
     sys.exit()
 
@@ -272,44 +280,48 @@ def main(argv):
         elif current_argument in ("-t", "--target"):
             target = socket.gethostbyname(current_value)
             
-            # Information Target and Time
-            pembatas() 
-            print("Scanning Target: " + target) 
-            print("Scanning started at: " + str(datetime.now()))
-            
             # Check what time the scan started
             t1 = datetime.now()
-            pembatas()
+            
+            # Information Target and Time
+            print("Scanning Target: " + target) 
+            print("Scanning started at: " + str(t1))
+            print("")
             
             try:
                 # will scan ports
-                for data in port_target: 
-                    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
-                    socket.setdefaulttimeout(1) 
+                for data in port_target:
+                    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                    socket.setdefaulttimeout(1)
                     
-                    # returns an error indicator 
-                    result = s.connect_ex((target,data["port"])) 
-                    if result ==0: 
-                        print("{}: Port {} is open".format(data["name"],data["port"])) 
+                    # returns an error indicator
+                    result = s.connect_ex((target,data["port"]))
+                    
+                    if result ==0:
+                        print(color("hijau")+ "{}: Port {} is open".format(data["name"],data["port"]))
+                    else:
+                        print(color("merah")+ "{}: Port {} is not open".format(data["name"],data["port"]))
                     s.close()
             except KeyboardInterrupt: 
-                    print("\n Exitting Program !!!!") 
+                    print("\n Exitting Program !!!!" +color("reset")) 
                     sys.exit() 
             except socket.gaierror: 
-                    print("\n Hostname Could Not Be Resolved !!!!") 
+                    print("\n Hostname Could Not Be Resolved !!!!" +color("reset")) 
                     sys.exit() 
             except socket.error: 
-                    print("\ Server not responding !!!!") 
+                    print("\ Server not responding !!!!" +color("reset")) 
                     sys.exit()
-            pembatas()
+            print("")
             # Checking the time again
             t2 = datetime.now()
             # Calculates the difference of time, to see how long it took to run the script
             total =  t2 - t1
             # Printing the information to screen
-            print('Scanning Completed in: ', total )
+            print('Scanning Completed in: ' + str(total) +color("reset") )
             pembatas()
-    
+        elif current_argument in ("-w", "--whatsnew"):
+            whats_new()
+            pembatas()
+            
 if __name__ == "__main__":
-   main(sys.argv[1:])
-   print(color("reset"))
+    main(sys.argv[1:])
