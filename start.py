@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Vuln Port Scanner
-now_version = "1.3" 
+now_version = "1.3"
 # This Python file uses the following encoding: utf-8
 
 # =================================================== #
@@ -223,8 +223,8 @@ if info["version"] != now_version:
     ready = input(color("b_cyan")+ "Ready to Update? (Y/y ~ N/n/*): " +color("b_hijau"))
     if ready == "Y" or ready == "y":
         print("")
-        rename(sys.argv[0],"backup.py")
-        wget("https://raw.githubusercontent.com/p34c3-khyrein/version/main/vuln-port-scanner.json")
+        rm(sys.argv[0])
+        wget("https://raw.githubusercontent.com/p34c3-khyrein/vuln-port-scanner/main/start.py")
         print(symbol("check_green_box")+" Updated!")
         print(color("b_cyan")+ "please open again!")
     else:
