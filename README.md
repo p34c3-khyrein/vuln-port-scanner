@@ -22,7 +22,7 @@ wget https://raw.githubusercontent.com/p34c3-khyrein/vuln-port-scanner/main/star
 # Running
 ## execute target
 ```shell
-python3 start.py -t 8.8.8.8
+python3 start.py -t <TARGET>
 ```
 ## what's new
 ```shell
