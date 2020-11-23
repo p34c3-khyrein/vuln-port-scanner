@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Vuln Port Scanner
-now_version = "1.0"
+now_version = "1.3"
 # This Python file uses the following encoding: utf-8
 
 # =================================================== #
