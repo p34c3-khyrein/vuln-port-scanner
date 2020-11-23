@@ -5,7 +5,7 @@
 [![Custom badge](https://img.shields.io/badge/whatsapp-%23C0C0C0.svg?&style=for-the-badge&logo=whatsapp&logoColor=#25D366)](https://wa.me/6282214252455/)
 
 # Software
-[![Custom badge](https://img.shields.io/badge/python 3%20-%2300599C.svg?&style=for-the-badge&logo=Python&logoColor=white)](https://www.python.org/)
+[![Custom badge](https://img.shields.io/badge/python%203%20-%2300599C.svg?&style=for-the-badge&logo=Python&logoColor=white)](https://www.python.org/)
 
 # Support
 Vuln Port Scanner has tested it so far on:
