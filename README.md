@@ -1,14 +1,11 @@
-![banner](img/banner.JPG)
-
+![Screenshot](img/banner.JPG)
 ---
 
 # Sosial Media
 [![Custom badge](https://img.shields.io/badge/whatsapp-%23C0C0C0.svg?&style=for-the-badge&logo=whatsapp&logoColor=#25D366)](https://wa.me/6282214252455/)
 
-# Introduction
+# Software
 [![Custom badge](https://img.shields.io/badge/python%20-%2300599C.svg?&style=for-the-badge&logo=Python&logoColor=white)](https://www.python.org/)
-
----
 
 # Support
 Vuln Port Scanner has tested it so far on:
@@ -23,10 +20,17 @@ wget https://raw.githubusercontent.com/p34c3-khyrein/vuln-port-scanner/main/star
 ```
 
 # Running
+## execute target
 ```shell
-help: python3 start.py -h
-what\'s new: python3 start.py -w
-execute target: python3 start.py -t 8.8.8.8
+python3 start.py -t 8.8.8.8
+```
+## what's new
+```shell
+python3 start.py -w
+```
+## help
+```shell
+python3 start.py -h
 ```
 
 # I also want to make you aware that:
